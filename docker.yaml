@@ -15,7 +15,7 @@
     register: commit_version
     
   - name: Git version detail
-    shell: echo 'commit_version.stdout'
+    shell: echo "{{commit_version}}"
    
   - command: echo "{{ lookup('env','PATH') }}"
     register: default_path
@@ -40,7 +40,7 @@
 
 
   - name: Build docker image
-    shell: docker build -t wap:'commit_version.stdout' /var/docker/
+    shell: docker build -t wap:"{{commit_version}}" /var/docker/
 
   - name: Run the build
-    shell: docker run -tid -p 9000:80 wap:'commit_version.stdout'
+    shell: docker run -tid -p 9000:80 wap:"{{commit_version}}"

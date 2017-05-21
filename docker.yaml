@@ -28,7 +28,7 @@
 
 
   - name: Build docker image
-    shell: docker build -t wap:{env.GIT_COMMIT} /var/docker/
+    shell: docker build -t wap:env.GIT_COMMIT /var/docker/
 
   - name: Run the build
-    shell: docker run -tid -p 9000:80 wap:{env.GIT_COMMIT}
+    shell: docker run -tid -p 9000:80 wap:env.GIT_COMMIT

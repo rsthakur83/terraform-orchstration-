@@ -1,0 +1,34 @@
+---
+- hosts: tomcatservers
+  sudo: yes
+
+  vars:
+    app_version: release-0.04
+
+
+  tasks:
+  - name: Install EPEL repo
+    yum: name=epel-release state=present
+
+
+  - name: Remove old files foo
+    file: path=/var/docker/ state=absent
+    ignore_errors: true
+
+
+  - name: deploy website content
+    git: repo=https://github.com/rsthakur83/release.git
+         dest=/var/docker/
+         version={{ app_version }}
+         force=yes
+
+
+  - name: Copying Docker file
+    copy: src=Dockerfile dest=/var/docker/
+
+
+  - name: Build docker image
+    shell: docker build -t wap:v1 /var/docker/
+
+  - name: Run the build
+    shell: docker run -tid -p 9000:80 wap:v1

@@ -21,11 +21,15 @@
     register: default_path
   - command: echo "{{ lookup('env','WORKSPACE') }}"
     register: jenkins_job_workspace
- 
+  
+  - name: Error handling
+    debug: msg= "The error output os {{commit_version}}"
     
   - name: Remove old files foo
     file: path=/var/docker/ state=absent
     ignore_errors: true
+   
+
 
 
   - name: deploy website content

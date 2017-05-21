@@ -44,7 +44,7 @@
 
 
   - name: Build docker image
-    shell: docker build -t "{{commit_version.stdout}}" /var/docker/
+    shell: docker build -t {{commit_version.stdout}} /var/docker/
 
   - name: Run the build
-    shell: docker run -tid -p 9000:80 "{{commit_version.stdout}}"
+    shell: docker run -tid -p 9000:80 {{commit_version.stdout}}

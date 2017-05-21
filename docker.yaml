@@ -23,7 +23,7 @@
     register: jenkins_job_workspace
   
   - name: Error handling
-    debug: msg= "The error output os {{commit_version}}"
+    debug: msg= "The error output os {{commit_version.stdout}}"
     
   - name: Remove old files foo
     file: path=/var/docker/ state=absent

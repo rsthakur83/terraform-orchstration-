@@ -9,6 +9,11 @@
   tasks:
   - name: Install EPEL repo
     yum: name=epel-release state=present
+    
+  - command: echo "{{ lookup('env','PATH') }}"
+    register: default_path
+  - command: echo "{{ lookup('env','WORKSPACE') }}"
+    register: jenkins_job_workspace
 
 
   - name: Remove old files foo

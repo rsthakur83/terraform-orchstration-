@@ -9,6 +9,10 @@
   tasks:
   - name: Install EPEL repo
     yum: name=epel-release state=present
+  
+  - name: Git commit version
+    command: git log -n 1 master |head -1|awk '{print $2}'
+    register: commit_version
     
   - command: echo "{{ lookup('env','PATH') }}"
     register: default_path
@@ -33,7 +37,7 @@
 
 
   - name: Build docker image
-    shell: docker build -t wap:${commit} /var/docker/
+    shell: docker build -t wap:commit_version /var/docker/
 
   - name: Run the build
-    shell: docker run -tid -p 9000:80 wap:${commit}
+    shell: docker run -tid -p 9000:80 wap:commit_version

@@ -14,6 +14,11 @@
     register: default_path
   - command: echo "{{ lookup('env','WORKSPACE') }}"
     register: jenkins_job_workspace
+  
+  - command: echo "{{ lookup('env','GIT_COMMIT') }}"
+    register: jenkins_job_workspace
+    
+    
 
 
   - name: Remove old files foo

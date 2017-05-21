@@ -28,7 +28,7 @@
 
 
   - name: Build docker image
-    shell: docker build -t wap:v1 /var/docker/
+    shell: docker build -t wap:${GIT_COMMIT} /var/docker/
 
   - name: Run the build
-    shell: docker run -tid -p 9000:80 wap:v1
+    shell: docker run -tid -p 9000:80 wap:${GIT_COMMIT}

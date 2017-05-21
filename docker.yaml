@@ -37,7 +37,7 @@
 
 
   - name: Build docker image
-    shell: docker build -t wap:commit_version /var/docker/
+    shell: docker build -t wap:commit_version.stdout /var/docker/
 
   - name: Run the build
-    shell: docker run -tid -p 9000:80 wap:commit_version
+    shell: docker run -tid -p 9000:80 wap:commit_version.stdout

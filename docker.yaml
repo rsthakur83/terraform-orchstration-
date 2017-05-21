@@ -15,7 +15,7 @@
   - command: echo "{{ lookup('env','WORKSPACE') }}"
     register: jenkins_job_workspace
   
-  - command: echo "{{ lookup('env','commit') }}"
+  - command: echo "${GIT_COMMIT}"
     register: jenkins_commit
     
     
